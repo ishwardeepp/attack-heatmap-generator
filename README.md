@@ -395,19 +395,12 @@ Contributions welcome! The codebase is designed for extensibility:
 - Enhance filtering capabilities
 - Improve test coverage
 
-## 📄 License
-
-[Add your license here]
 
 ## 🙏 Acknowledgments
 
 - [MITRE ATT&CK](https://attack.mitre.org/) - The threat intelligence framework
 - [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) - Visualization tool
 - [MITRE ATT&CK STIX Data](https://github.com/mitre-attack/attack-stix-data) - Machine-readable data
-
-## 📧 Contact
-
-[Add your contact information]
 
 ---
 

@@ -1,4 +1,4 @@
-# MITRE ATT&CK Heatmap Generator - Professional Edition
+# MITRE ATT&CK Heatmap Generator
 
 A comprehensive, production-ready Python tool for generating MITRE ATT&CK heatmaps from various input sources. Built for threat intelligence research with extensive validation, logging, and testing.
 
@@ -395,19 +395,12 @@ Contributions welcome! The codebase is designed for extensibility:
 - Enhance filtering capabilities
 - Improve test coverage
 
-## 📄 License
-
-[Add your license here]
 
 ## 🙏 Acknowledgments
 
 - [MITRE ATT&CK](https://attack.mitre.org/) - The threat intelligence framework
 - [ATT&CK Navigator](https://github.com/mitre-attack/attack-navigator) - Visualization tool
 - [MITRE ATT&CK STIX Data](https://github.com/mitre-attack/attack-stix-data) - Machine-readable data
-
-## 📧 Contact
-
-[Add your contact information]
 
 ---
 

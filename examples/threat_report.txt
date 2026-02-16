@@ -1,0 +1,65 @@
+Threat Intelligence Report: APT Campaign Analysis
+Date: February 15, 2024
+Analyst: Security Research Team
+
+EXECUTIVE SUMMARY
+This report details a sophisticated cyber campaign targeting financial institutions 
+observed between January and February 2024. The threat actors demonstrated advanced 
+capabilities across multiple attack phases.
+
+INITIAL ACCESS
+The campaign began with spearphishing attacks (T1566.001) targeting employees in 
+the finance department. Malicious Microsoft Office documents were weaponized with 
+macros that executed PowerShell commands (T1059.001) to establish initial foothold.
+
+EXECUTION
+Upon successful compromise, the actors leveraged Windows Command Shell (T1059.003) 
+and Windows Management Instrumentation (T1047) for command execution. Scheduled 
+tasks (T1053.005) were created for persistence.
+
+PRIVILEGE ESCALATION
+The threat actors attempted to dump credentials from LSASS memory (T1003.001) and 
+accessed the NTDS database (T1003.003) on domain controllers. Valid accounts (T1078) 
+were then used for lateral movement.
+
+DEFENSE EVASION
+Multiple defense evasion techniques were observed:
+- Process injection via DLL injection (T1055.001) and process hollowing (T1055.012)
+- Obfuscation of malicious files (T1027) including software packing (T1027.002)
+- Clearing Windows event logs (T1070.001) and deleting files (T1070.004)
+- Disabling security tools (T1562.001)
+- Registry modifications (T1112) to maintain persistence
+
+LATERAL MOVEMENT
+The actors moved laterally using:
+- Remote Desktop Protocol (T1021.001)
+- SMB and Windows Admin Shares (T1021.002)
+
+DISCOVERY
+Extensive reconnaissance was conducted:
+- System information discovery (T1082)
+- File and directory discovery (T1083)
+- Process discovery (T1057)
+- Remote system discovery (T1018)
+- Network configuration discovery (T1016)
+- Network connections discovery (T1049)
+
+COMMAND AND CONTROL
+Communication with C2 infrastructure utilized:
+- Standard web protocols (T1071.001)
+- DNS tunneling (T1071.004)
+Tool transfer was accomplished via T1105 (Ingress Tool Transfer).
+
+RECOMMENDATIONS
+1. Implement email security controls to detect T1566.001
+2. Deploy endpoint detection for T1059.001 and T1059.003
+3. Monitor for T1003.001 and T1003.003 credential access attempts
+4. Restrict RDP (T1021.001) and SMB (T1021.002) access
+5. Enable comprehensive logging to detect T1070.001
+
+INDICATORS OF COMPROMISE
+[Additional IOCs would be listed here]
+
+CONCLUSION
+This campaign demonstrates sophisticated TTPs requiring defense-in-depth strategies
+and continuous monitoring across the kill chain.

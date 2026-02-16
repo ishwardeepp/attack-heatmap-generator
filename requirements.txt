@@ -1,0 +1,19 @@
+# Core dependencies
+requests>=2.31.0
+python-dateutil>=2.8.2
+
+# Optional dependencies for future features
+# pandas>=2.0.0  # For advanced data manipulation
+# numpy>=1.24.0  # For statistical analysis
+# plotly>=5.14.0  # For HTML export
+# jinja2>=3.1.2  # For report generation
+
+# Development dependencies
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.1
+
+# Code quality
+black>=23.7.0
+flake8>=6.1.0
+mypy>=1.5.0

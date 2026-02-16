@@ -26,7 +26,6 @@ from mitre_heatmap.validator import Validator
 from mitre_heatmap.generator import HeatmapGenerator
 from mitre_heatmap.parsers import InputParserFactory
 
-
 def create_parser() -> argparse.ArgumentParser:
     """Create argument parser."""
     parser = argparse.ArgumentParser(
@@ -171,6 +170,11 @@ Examples:
             '--export-stats',
             action='store_true',
             help='Export statistics JSON file'
+        )
+        subparser.add_argument(
+            '--html',
+            action='store_true',
+            help='Export as standalone HTML file (opens in browser, no upload needed)'
         )
     
     return parser
@@ -361,6 +365,29 @@ def main():
         
         logger.info(f"Heatmap saved to: {output_path}")
         
+        # Generate local visualizations automatically
+        try:
+            import sys
+            sys.path.insert(0, str(Path(__file__).parent))
+            from visualize_local import generate_html_heatmap, generate_svg_heatmap
+            
+            html_path = Path(config.output_directory) / f"{args.output}_heatmap.html"
+            svg_path = Path(config.output_directory) / f"{args.output}_heatmap.svg"
+                        
+            logger.info("Generating local visualizations...")
+            
+            # Generate HTML
+            html_output = generate_html_heatmap(str(output_path), str(html_path), args.title)
+            logger.info(f"Interactive HTML heatmap: {html_output}")
+            
+            # Generate SVG
+            svg_output = generate_svg_heatmap(str(output_path), str(svg_path), args.title)
+            logger.info(f"SVG heatmap: {svg_output}")
+            
+        except Exception as e:
+            logger.warning(f"Could not generate local visualizations: {e}")
+            logger.info("You can generate them manually with: python visualize_local.py " + str(output_path))
+        
         # Export statistics if requested
         if args.export_stats:
             stats = generator.get_statistics()
@@ -390,7 +417,14 @@ def main():
                 logger.info(f"    {', '.join(group_list[:10])} ... and {len(group_list)-10} more")
         
         logger.info("-" * 70)
-        logger.info("SUCCESS! Open the layer in ATT&CK Navigator:")
+        logger.info("SUCCESS! Your heatmaps are ready:")
+        logger.info(f"  1. Navigator JSON: {output_path}")
+        if Path(config.output_directory, f"{args.output}_heatmap.html").exists():
+            logger.info(f"  2. Interactive HTML: {config.output_directory}/{args.output}_heatmap.html")
+            logger.info(f"  3. SVG Image: {config.output_directory}/{args.output}_heatmap.svg")
+        logger.info("")
+        logger.info("Open the HTML file in your browser to view the heatmap!")
+        logger.info("Or upload the JSON to ATT&CK Navigator:")
         logger.info("  https://mitre-attack.github.io/attack-navigator/")
         logger.info("=" * 70)
         

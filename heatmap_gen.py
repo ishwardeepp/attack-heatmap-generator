@@ -392,7 +392,7 @@ def main():
         if args.export_stats:
             stats = generator.get_statistics()
             stats_path = Path(config.output_directory) / f"{args.output}_stats.json"
-            
+
             with open(stats_path, 'w') as f:
                 json.dump(stats, f, indent=2)
             
